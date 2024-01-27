@@ -1,0 +1,14 @@
+- name: Install System Packages 1 (build-essential, cmake, pkg-config)
+  become: true
+  ansible.builtin.package:
+    name: [ "cmake", "pkg-config" ]
+  tags:
+    - install
+    - core
+- name: Install System Packages 2 (unzip, libtool, gettext)
+  become: true
+  ansible.builtin.package:
+    name: [ "unzip", "libtool", "gettext" ]
+  tags:
+    - install
+    - core

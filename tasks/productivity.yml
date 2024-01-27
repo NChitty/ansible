@@ -1,0 +1,7 @@
+- name: Install packages
+  become: true
+  ansible.builtin.package:
+    name: [ "tmux", "fzf", "xclip", "ripgrep", "wireguard-tools", "neovim" ]
+  tags:
+    - install
+    - productivity

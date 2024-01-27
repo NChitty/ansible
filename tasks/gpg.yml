@@ -1,0 +1,10 @@
+- name: Import private key
+  vars:
+    gpg_user: nchitty
+    gpg_group: nchitty
+    gpg_private_key: ../../.gnupg/private.gpg
+    gpg_public_key: ../../.gnupg/public.gpg
+    gpg_trust_file: ../../.gnupg/trust.gpg
+    gpg_private_key_passphrase: "{{ lookup('unvault', './.gnupg/pass') | string | trim }}"
+  include_role:
+    name: gpg-import

@@ -1,0 +1,13 @@
+- name: Download RobotoMono NF
+  become: true
+  get_url:
+    dest: "{{ lookup('env', 'HOME') }}/downloads/RobotoMono.zip"
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/RobotoMono.zip"
+- name: Unpack NerdFont
+  become: true
+  unarchive:
+    dest: "/usr/share/fonts/RobotoMono"
+    src: "{{ lookup('env', 'HOME') }}/downloads/RobotoMono.zip"
+- name: Download Starship
+  include_role:
+    name: starship
