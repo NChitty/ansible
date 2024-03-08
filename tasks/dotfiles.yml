@@ -7,28 +7,10 @@
   tags:
     - install
     - dotfiles
-- name: Link tmux-config
-  file:
-    src: "{{ lookup('env', 'HOME') }}/dotFiles/.tmux.conf"
-    path: "{{ lookup('env', 'HOME') }}/.tmux.conf"
-    state: link
-- name: Link git-config
-  file:
-    src: "{{ lookup('env', 'HOME') }}/dotFiles/.gitconfig"
-    path: "{{ lookup('env', 'HOME') }}/.gitconfig"
-    state: link
-- name: Link vimrc
-  file:
-    src: "{{ lookup('env', 'HOME') }}/dotFiles/.vimrc"
-    path: "{{ lookup('env', 'HOME') }}/.vimrc"
-    state: link
-- name: Link bash aliases
-  file:
-    src: "{{ lookup('env', 'HOME') }}/dotFiles/.bash_aliases"
-    path: "{{ lookup('env', 'HOME') }}/.bash_aliases"
-    state: link
-- name: Link starship config
-  file:
-    src: "{{ lookup('env', 'HOME') }}/dotFiles/starship.toml"
-    path: "{{ lookup('env', 'HOME') }}/.config/starship.toml"
-    state: link
+- name: Assert Stow
+  become: true
+  ansible.builtin.package:
+    name: "stow"
+    state: "present"
+- name: Stow dotfiles
+  shell: cd $HOME/dotFiles && stow .
