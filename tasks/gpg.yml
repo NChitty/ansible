@@ -1,4 +1,4 @@
-- name: Import private key
+- name: Import Signing Key
   vars:
     gpg_user: nchitty
     gpg_group: nchitty
